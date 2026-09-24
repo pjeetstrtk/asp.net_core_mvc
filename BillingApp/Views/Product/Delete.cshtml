@@ -1,0 +1,12 @@
+@model BillingApp.Models.Product
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+<h2 class="text-danger">Delete Product</h2>
+<div class="alert alert-warning">Are you sure you want to delete <b>@Model.Name</b>?</div>
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-danger">Yes, Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

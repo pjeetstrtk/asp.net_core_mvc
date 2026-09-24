@@ -1,0 +1,15 @@
+@model BillingApp.Models.Billing
+@{
+    ViewData["Title"] = "Delete Billing";
+}
+
+<h2 class="text-danger">Delete Invoice</h2>
+<div class="alert alert-warning">
+    Delete invoice <b>@Model.InvoiceNo</b> for customer <b>@Model.Customer?.Name</b>?<br />
+    This will remove all associated items and payments.
+</div>
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-danger">Yes, Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

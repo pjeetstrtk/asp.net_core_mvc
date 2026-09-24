@@ -1,0 +1,80 @@
+@model BillingApp.Models.Billing
+@{
+    ViewData["Title"] = "Invoice Print";
+    Layout = "_Layout";
+}
+
+<div class="card shadow-sm p-4">
+    <div class="text-center mb-4">
+        <h2>INVOICE</h2>
+        <p class="text-muted">BillingApp Pvt Ltd</p>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h5>Bill To:</h5>
+            <p>
+                <b>@Model.Customer?.Name</b><br />
+                @Model.Customer?.Email<br />
+                @Model.Customer?.Phone<br />
+                @Model.Customer?.Address
+            </p>
+        </div>
+        <div class="col-md-6 text-end">
+            <p>
+                <b>Invoice #:</b> @Model.InvoiceNo<br />
+                <b>Date:</b> @Model.BillDate.ToString("dd MMM yyyy")<br />
+                <b>Status:</b> @Model.Status
+            </p>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Product</th>
+                <th>Unit Price</th>
+                <th>Qty</th>
+                <th class="text-end">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+            }
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@item.Product?.Name</td>
+                    <td>Rs. @item.UnitPrice.ToString("N2")</td>
+                    <td>@item.Quantity</td>
+                    <td class="text-end">Rs. @item.LineTotal.ToString("N2")</td>
+                </tr>
+                i++;
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="4" class="text-end">Total</th>
+                <th class="text-end">Rs. @Model.TotalAmount.ToString("N2")</th>
+            </tr>
+            <tr>
+                <th colspan="4" class="text-end">Paid</th>
+                <th class="text-end">Rs. @Model.PaidAmount.ToString("N2")</th>
+            </tr>
+            <tr class="table-warning">
+                <th colspan="4" class="text-end">Balance</th>
+                <th class="text-end">Rs. @Model.BalanceAmount.ToString("N2")</th>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="text-center mt-4 d-print-none">
+        <a asp-action="DownloadInvoice" asp-route-id="@Model.Id" class="btn btn-success">
+            <i class="bi bi-file-earmark-pdf"></i> Download PDF
+        </a>
+        <button onclick="window.print()" class="btn btn-primary">
+            <i class="bi bi-printer"></i> Print
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
+</div>

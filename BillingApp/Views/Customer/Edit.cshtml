@@ -1,0 +1,17 @@
+@model BillingApp.Models.Customer
+@{ ViewData["Title"] = "Edit Customer"; }
+
+<h2>Edit Customer</h2>
+<form method="post" class="card p-4 shadow-sm mt-3">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="CreatedAt" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="mb-3"><label asp-for="Name" class="form-label"></label><input asp-for="Name" class="form-control" /></div>
+    <div class="mb-3"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control" /></div>
+    <div class="mb-3"><label asp-for="Phone" class="form-label"></label><input asp-for="Phone" class="form-control" /></div>
+    <div class="mb-3"><label asp-for="Address" class="form-label"></label><textarea asp-for="Address" class="form-control"></textarea></div>
+    <div>
+        <button class="btn btn-primary">Update</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

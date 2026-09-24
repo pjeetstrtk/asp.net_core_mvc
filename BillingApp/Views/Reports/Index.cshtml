@@ -1,0 +1,84 @@
+@model List<BillingApp.Models.Billing>
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<h2 class="mb-3">Reports</h2>
+
+<form method="get" class="card p-3 mb-3">
+    <div class="row g-2 align-items-end">
+        <div class="col-md-3">
+            <label class="form-label">From</label>
+            <input type="date" name="from" class="form-control" value="@ViewBag.From" />
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">To</label>
+            <input type="date" name="to" class="form-control" value="@ViewBag.To" />
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-primary">Filter</button>
+            <a asp-action="Index" class="btn btn-secondary">Reset</a>
+            <button type="submit" asp-action="DownloadReport" class="btn btn-success">
+                <i class="bi bi-file-earmark-pdf"></i> Download PDF
+            </button>
+        </div>
+    </div>
+</form>
+
+<div class="row g-3 mb-3">
+    <div class="col-md-4">
+        <div class="stat-card" style="background:#2563eb;">
+            <h6>Total Billed</h6>
+            <h2>Rs. @(((decimal)ViewBag.TotalBilled).ToString("N2"))</h2>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card" style="background:#059669;">
+            <h6>Total Paid</h6>
+            <h2>Rs. @(((decimal)ViewBag.TotalPaid).ToString("N2"))</h2>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card" style="background:#dc2626;">
+            <h6>Total Balance</h6>
+            <h2>Rs. @(((decimal)ViewBag.TotalBalance).ToString("N2"))</h2>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <table class="table mb-0">
+        <thead>
+            <tr>
+                <th>Invoice</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th class="text-end">Total</th>
+                <th class="text-end">Paid</th>
+                <th class="text-end">Balance</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var b in Model)
+            {
+                <tr>
+                    <td>@b.InvoiceNo</td>
+                    <td>@b.BillDate.ToString("dd MMM yyyy")</td>
+                    <td>@b.Customer?.Name</td>
+                    <td class="text-end">Rs. @b.TotalAmount.ToString("N2")</td>
+                    <td class="text-end">Rs. @b.PaidAmount.ToString("N2")</td>
+                    <td class="text-end">Rs. @b.BalanceAmount.ToString("N2")</td>
+                    <td><span
+                        class="badge bg-@(b.Status == "Paid" ? "success" : b.Status == "Partial" ? "warning" : "secondary")">@b.Status</span>
+                    </td>
+                    <td>
+                        <a asp-action="Invoice" asp-route-id="@b.Id" class="btn btn-sm btn-outline-primary">View</a>
+                        <a asp-action="DownloadInvoice" asp-route-id="@b.Id" class="btn btn-sm btn-success">PDF</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

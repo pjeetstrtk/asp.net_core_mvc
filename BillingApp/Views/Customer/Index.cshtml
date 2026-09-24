@@ -1,0 +1,37 @@
+@model List<BillingApp.Models.Customer>
+@{ ViewData["Title"] = "Customers"; }
+
+<div class="d-flex justify-content-between mb-3">
+    <h2>Customers</h2>
+    <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> New Customer</a>
+</div>
+
+<form method="get" class="mb-3">
+    <div class="input-group">
+        <input name="search" class="form-control" placeholder="Search by name or phone..." value="@Context.Request.Query["search"]" />
+        <button class="btn btn-outline-secondary">Search</button>
+    </div>
+</form>
+
+<div class="card shadow-sm">
+    <table class="table mb-0">
+        <thead>
+            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Address</th><th width="160"></th></tr>
+        </thead>
+        <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Name</td>
+                <td>@c.Email</td>
+                <td>@c.Phone</td>
+                <td>@c.Address</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@c.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@c.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,42 @@
+@model BillingApp.Models.Payment
+@{
+    ViewData["Title"] = "Add Payment";
+    var billing = ViewBag.Billing as BillingApp.Models.Billing;
+}
+
+<h2>Add Payment</h2>
+
+<div class="card shadow-sm p-4 mt-3">
+    <div class="alert alert-info">
+        <b>Invoice:</b> @billing?.InvoiceNo<br />
+        <b>Customer:</b> @billing?.Customer?.Name<br />
+        <b>Total:</b> Rs. @billing?.TotalAmount.ToString("N2") &nbsp; | &nbsp;
+        <b>Paid:</b> Rs. @billing?.PaidAmount.ToString("N2") &nbsp; | &nbsp;
+        <b class="text-danger">Balance:</b> Rs. @billing?.BalanceAmount.ToString("N2")
+    </div>
+
+    <form method="post">
+        <input type="hidden" asp-for="BillingId" />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="Amount" class="form-label"></label>
+            <input asp-for="Amount" type="number" step="0.01" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Method" class="form-label"></label>
+            <select asp-for="Method" class="form-select">
+                <option>Cash</option>
+                <option>Card</option>
+                <option>UPI</option>
+                <option>Bank</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Reference" class="form-label"></label>
+            <input asp-for="Reference" class="form-control" placeholder="Txn ID / Cheque No (optional)" />
+        </div>
+        <button class="btn btn-success">Save Payment</button>
+        <a asp-controller="Billing" asp-action="Details" asp-route-id="@Model.BillingId"
+           class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

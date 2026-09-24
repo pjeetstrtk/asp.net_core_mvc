@@ -1,0 +1,12 @@
+@model BillingApp.Models.Payment
+@{ ViewData["Title"] = "Delete Payment"; }
+
+<h2 class="text-danger">Delete Payment</h2>
+<div class="alert alert-warning">
+    Delete payment of <b>Rs. @Model.Amount.ToString("N2")</b> from invoice <b>@Model.Billing?.InvoiceNo</b>?
+</div>
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-danger">Yes, Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
