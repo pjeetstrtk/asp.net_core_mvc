@@ -44,8 +44,6 @@ D:\asp.net_core_mvc\BillingApp\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
 D:\asp.net_core_mvc\BillingApp\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 D:\asp.net_core_mvc\BillingApp\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 D:\asp.net_core_mvc\BillingApp\bin\Debug\net8.0\Mono.TextTemplating.dll
-D:\asp.net_core_mvc\BillingApp\bin\Debug\net8.0\Npgsql.dll
-D:\asp.net_core_mvc\BillingApp\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\asp.net_core_mvc\BillingApp\bin\Debug\net8.0\QuestPDF.dll
 D:\asp.net_core_mvc\BillingApp\bin\Debug\net8.0\System.CodeDom.dll
 D:\asp.net_core_mvc\BillingApp\bin\Debug\net8.0\System.Composition.AttributedModel.dll
@@ -149,3 +147,6 @@ D:\asp.net_core_mvc\BillingApp\obj\Debug\net8.0\refint\BillingApp.dll
 D:\asp.net_core_mvc\BillingApp\obj\Debug\net8.0\BillingApp.pdb
 D:\asp.net_core_mvc\BillingApp\obj\Debug\net8.0\BillingApp.genruntimeconfig.cache
 D:\asp.net_core_mvc\BillingApp\obj\Debug\net8.0\ref\BillingApp.dll
+D:\asp.net_core_mvc\BillingApp\obj\Debug\net8.0\BillingApp.sourcelink.json
+D:\asp.net_core_mvc\BillingApp\bin\Debug\net8.0\MySqlConnector.dll
+D:\asp.net_core_mvc\BillingApp\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll

@@ -1,6 +1,7 @@
 using BillingApp.Data;
 using Microsoft.EntityFrameworkCore;
 using QuestPDF.Infrastructure;
+// MUST be the first line — enables legacy DateTime behavior with Npgsql
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // Session
 builder.Services.AddSession(options =>
